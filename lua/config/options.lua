@@ -8,4 +8,4 @@ vim.opt.clipboard = ""
 vim.opt.colorcolumn = "80"
 vim.opt.wrap = true
 vim.opt.linebreak = true
-vim.opt.fo = "jntrocqap"
+vim.opt.fo = "jntrocqp"
