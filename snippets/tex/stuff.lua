@@ -105,6 +105,27 @@ return {
     })
   ),
 
+  s({ trig = "(%a)(%d)", regTrig = true, hidden = true }, {
+    d(1, function(_, snip)
+      -- Capture the letter and number from the trigger
+      local letter, number = snip.captures[1], snip.captures[2]
+      -- Create a snippet node with the formatted string and an insert node
+      return ls.sn(nil, {
+        f(function()
+          return letter .. "_{" .. number .. "}"
+        end, {}),
+        i(1), -- Position the cursor after the number
+      })
+    end, {}),
+  }),
+
+  s(
+    { trig = "mm", wordTrig = false, regTrig = true },
+    fmta("$ <> $", {
+      d(1, get_visual),
+    })
+  ),
+
   s(
     { trig = "ee", dscr = "Euler's number" },
     fmta("e^{<>}", {
