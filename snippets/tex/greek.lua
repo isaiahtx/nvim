@@ -10,112 +10,112 @@ local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
 return {
-  s({ trig = ";a", snippetType = "autosnippet" }, {
+  s({ trig = ";a", snippetType = "autosnippet", wordTrig = false }, {
     t("\\alpha"),
   }),
-  s({ trig = ";b", snippetType = "autosnippet" }, {
+  s({ trig = ";b", snippetType = "autosnippet", wordTrig = false }, {
     t("\\beta"),
   }),
-  s({ trig = ";g", snippetType = "autosnippet" }, {
+  s({ trig = ";g", snippetType = "autosnippet", wordTrig = false }, {
     t("\\gamma"),
   }),
-  s({ trig = ";G", snippetType = "autosnippet" }, {
+  s({ trig = ";G", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Gamma"),
   }),
-  s({ trig = ";d", snippetType = "autosnippet" }, {
+  s({ trig = ";d", snippetType = "autosnippet", wordTrig = false }, {
     t("\\delta"),
   }),
-  s({ trig = ";D", snippetType = "autosnippet" }, {
+  s({ trig = ";D", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Delta"),
   }),
-  s({ trig = ";e", snippetType = "autosnippet" }, {
+  s({ trig = ";e", snippetType = "autosnippet", wordTrig = false }, {
     t("\\epsilon"),
   }),
-  s({ trig = ";ve", snippetType = "autosnippet" }, {
+  s({ trig = ";ve", snippetType = "autosnippet", wordTrig = false }, {
     t("\\varepsilon"),
   }),
-  s({ trig = ";z", snippetType = "autosnippet" }, {
+  s({ trig = ";z", snippetType = "autosnippet", wordTrig = false }, {
     t("\\zeta"),
   }),
-  s({ trig = ";h", snippetType = "autosnippet" }, {
+  s({ trig = ";h", snippetType = "autosnippet", wordTrig = false }, {
     t("\\eta"),
   }),
-  s({ trig = ";o", snippetType = "autosnippet" }, {
+  s({ trig = ";o", snippetType = "autosnippet", wordTrig = false }, {
     t("\\theta"),
   }),
-  s({ trig = ";vo", snippetType = "autosnippet" }, {
+  s({ trig = ";vo", snippetType = "autosnippet", wordTrig = false }, {
     t("\\vartheta"),
   }),
-  s({ trig = ";O", snippetType = "autosnippet" }, {
+  s({ trig = ";O", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Theta"),
   }),
-  s({ trig = ";k", snippetType = "autosnippet" }, {
+  s({ trig = ";k", snippetType = "autosnippet", wordTrig = false }, {
     t("\\kappa"),
   }),
-  s({ trig = ";l", snippetType = "autosnippet" }, {
+  s({ trig = ";l", snippetType = "autosnippet", wordTrig = false }, {
     t("\\lambda"),
   }),
-  s({ trig = ";L", snippetType = "autosnippet" }, {
+  s({ trig = ";L", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Lambda"),
   }),
-  s({ trig = ";m", snippetType = "autosnippet" }, {
+  s({ trig = ";m", snippetType = "autosnippet", wordTrig = false }, {
     t("\\mu"),
   }),
-  s({ trig = ";n", snippetType = "autosnippet" }, {
+  s({ trig = ";n", snippetType = "autosnippet", wordTrig = false }, {
     t("\\nu"),
   }),
-  s({ trig = ";x", snippetType = "autosnippet" }, {
+  s({ trig = ";x", snippetType = "autosnippet", wordTrig = false }, {
     t("\\xi"),
   }),
-  s({ trig = ";X", snippetType = "autosnippet" }, {
+  s({ trig = ";X", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Xi"),
   }),
-  s({ trig = ";p", snippetType = "autosnippet" }, {
+  s({ trig = ";p", snippetType = "autosnippet", wordTrig = false }, {
     t("\\pi"),
   }),
-  s({ trig = ";P", snippetType = "autosnippet" }, {
+  s({ trig = ";P", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Pi"),
   }),
-  s({ trig = ";r", snippetType = "autosnippet" }, {
+  s({ trig = ";r", snippetType = "autosnippet", wordTrig = false }, {
     t("\\rho"),
   }),
-  s({ trig = ";R", snippetType = "autosnippet" }, {
+  s({ trig = ";R", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Rho"),
   }),
-  s({ trig = ";s", snippetType = "autosnippet" }, {
+  s({ trig = ";s", snippetType = "autosnippet", wordTrig = false }, {
     t("\\sigma"),
   }),
-  s({ trig = ";S", snippetType = "autosnippet" }, {
+  s({ trig = ";S", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Sigma"),
   }),
-  s({ trig = ";t", snippetType = "autosnippet" }, {
+  s({ trig = ";t", snippetType = "autosnippet", wordTrig = false }, {
     t("\\tau"),
   }),
-  s({ trig = ";y", snippetType = "autosnippet" }, {
+  s({ trig = ";y", snippetType = "autosnippet", wordTrig = false }, {
     t("\\upsilon"),
   }),
-  s({ trig = ";f", snippetType = "autosnippet" }, {
+  s({ trig = ";f", snippetType = "autosnippet", wordTrig = false }, {
     t("\\phi"),
   }),
-  s({ trig = ";F", snippetType = "autosnippet" }, {
+  s({ trig = ";F", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Phi"),
   }),
-  s({ trig = ";vf", snippetType = "autosnippet" }, {
+  s({ trig = ";vf", snippetType = "autosnippet", wordTrig = false }, {
     t("\\varphi"),
   }),
-  s({ trig = ";c", snippetType = "autosnippet" }, {
+  s({ trig = ";c", snippetType = "autosnippet", wordTrig = false }, {
     t("\\chi"),
   }),
-  s({ trig = ";u", snippetType = "autosnippet" }, {
+  s({ trig = ";u", snippetType = "autosnippet", wordTrig = false }, {
     t("\\psi"),
   }),
-  s({ trig = ";U", snippetType = "autosnippet" }, {
+  s({ trig = ";U", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Psi"),
   }),
-  s({ trig = ";w", snippetType = "autosnippet" }, {
+  s({ trig = ";w", snippetType = "autosnippet", wordTrig = false }, {
     t("\\omega"),
   }),
-  s({ trig = ";W", snippetType = "autosnippet" }, {
+  s({ trig = ";W", snippetType = "autosnippet", wordTrig = false }, {
     t("\\Omega"),
   }),
 }
