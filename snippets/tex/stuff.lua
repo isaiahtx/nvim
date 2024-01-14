@@ -259,8 +259,14 @@ return {
   ),
 
   s(
+    { trig = "dla", wordTrig = false },
+    fmta("\\left|<>\\right|", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "dlc", wordTrig = false },
-    fmta("\\left{<>\\right}", { d(1, get_visual) }),
+    fmta("\\left\\{<>\\right\\}", { d(1, get_visual) }),
     { condition = math }
   ),
 
