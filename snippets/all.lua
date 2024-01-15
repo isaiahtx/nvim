@@ -25,8 +25,3 @@ types = require("luasnip.util.types")
 parse = require("luasnip.util.parser").parse_snippet
 ms = ls.multi_snippet
 k = require("luasnip.nodes.key_indexer").new_key
-
-return {
-  s({ trig = "wow" }, { t("banana man is so cool!") }),
-  -- Examples of Greek letter snippets, autotriggered for efficiency
-}

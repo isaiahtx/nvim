@@ -52,8 +52,6 @@ return {
     {
       trig = "([bBpvV])mat(%d+)x(%d+)([ar])",
       regTrig = true,
-      name = "matrix",
-      dscr = "matrix trigger lets go",
     },
     fmt(
       [[
@@ -108,6 +106,14 @@ return {
   ),
 
   s(
+    { trig = "wt", wordTrig = false },
+    fmta("\\widetilde{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "ol", wordTrig = false },
     fmta("\\overline{<>}", {
       d(1, get_visual),
@@ -140,7 +146,7 @@ return {
   ),
 
   s(
-    { trig = "al", dscr = "Expands 'al' into an align environment" },
+    { trig = "al" },
     fmta(
       [[
         \begin{align*}
@@ -243,9 +249,16 @@ return {
 
   s(
     { trig = "MM", snippetType = "autosnippet" },
-    fmta("\\[<>\\]", {
-      d(1, get_visual),
-    })
+    fmta(
+      [[
+        \[
+          <>
+        \]
+      ]],
+      {
+        d(1, get_visual),
+      }
+    )
   ),
 
   s(
@@ -256,7 +269,47 @@ return {
   ),
 
   s(
-    { trig = "ee", dscr = "Euler's number" },
+    { trig = "lim" },
+    fmta("\\lim_{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "sseq", wordTrig = false, snippetType = "autosnippet" },
+    { t("\\subseteq") },
+    { condition = math }
+  ),
+
+  s(
+    { trig = "onto", wordTrig = false, snippetType = "autosnippet" },
+    { t("\\twoheadrightarrow") },
+    { condition = math }
+  ),
+
+  s(
+    { trig = "into", wordTrig = false, snippetType = "autosnippet" },
+    { t("\\hookrightarrow") },
+    { condition = math }
+  ),
+
+  s(
+    { trig = "spseq", wordTrig = false, snippetType = "autosnippet" },
+    { t("\\supseteq") },
+    { condition = math }
+  ),
+
+  s(
+    { trig = "xr" },
+    fmta("\\xrightarrow{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "ee" },
     fmta("e^{<>}", {
       d(1, get_visual),
     }),
@@ -264,14 +317,14 @@ return {
   ),
 
   s(
-    { trig = "fit", dscr = "Expands 'fit' into LaTeX's '\\textit{}' command." },
+    { trig = "fit" },
     fmta("\\textit{<>}", {
       d(1, get_visual),
     })
   ),
 
   s(
-    { trig = "fbf", dscr = "Expands 'fbf' into LaTeX's '\\textbf{}' command." },
+    { trig = "fbf" },
     fmta("\\textbf{<>}", {
       d(1, get_visual),
     })
@@ -317,12 +370,85 @@ return {
     { condition = math }
   ),
 
-  -- sub super scripts
+  s(
+    {
+      trig = "cal(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\mathcal{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "ol(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\overline{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "scr(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\mathscr{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "wt(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\widetilde{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "wh(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\widehat{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
   s(
     {
       trig = "bf(%a)",
       regTrig = true,
-      name = "auto subscript",
       wordTrig = false,
       snippetType = "autosnippet",
     },
@@ -334,12 +460,10 @@ return {
     { condition = math }
   ),
 
-  -- sub super scripts
   s(
     {
       trig = "bb(%a)",
       regTrig = true,
-      name = "auto subscript",
       wordTrig = false,
       snippetType = "autosnippet",
     },
@@ -351,13 +475,10 @@ return {
     { condition = math }
   ),
 
-  -- sub super scripts
   s(
     {
       trig = "(%a)(%d)",
       regTrig = true,
-      name = "auto subscript",
-      dscr = "hi",
       wordTrig = false,
       snippetType = "autosnippet",
     },
@@ -376,8 +497,6 @@ return {
     {
       trig = "(%a)_(%d%d)",
       regTrig = true,
-      name = "auto subscript 2",
-      dscr = "auto subscript for 2+ digits",
       wordTrig = false,
       snippetType = "autosnippet",
     },
