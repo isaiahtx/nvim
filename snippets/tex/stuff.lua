@@ -116,6 +116,14 @@ return {
   ),
 
   s(
+    { trig = "rm", wordTrig = false },
+    fmta("\\mathrm{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "bf", wordTrig = false },
     fmta("\\mathbf{<>}", {
       d(1, get_visual),
@@ -306,6 +314,23 @@ return {
     fmta("_{<>}", {
       d(1, get_visual),
     }),
+    { condition = math }
+  ),
+
+  -- sub super scripts
+  s(
+    {
+      trig = "bf(%a)",
+      regTrig = true,
+      name = "auto subscript",
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\mathbf{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
     { condition = math }
   ),
 
