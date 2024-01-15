@@ -216,7 +216,7 @@ return {
   ),
 
   s(
-    { trig = "prod" },
+    { trig = "prod", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\prod_{<>}^{<>}", {
       i(1),
       i(2),
@@ -225,13 +225,13 @@ return {
   ),
 
   s(
-    { trig = "inf", wordTrig = false },
+    { trig = "inf", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\infty", {}),
     { condition = math }
   ),
 
   s(
-    { trig = "sum" },
+    { trig = "sum", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\sum_{<>}^{<>}", {
       i(1),
       i(2),
