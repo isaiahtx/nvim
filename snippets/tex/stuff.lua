@@ -92,6 +92,22 @@ return {
   ),
 
   s(
+    { trig = "cal", wordTrig = false },
+    fmta("\\mathcal{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "scr", wordTrig = false },
+    fmta("\\mathscr{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "ol", wordTrig = false },
     fmta("\\overline{<>}", {
       d(1, get_visual),
