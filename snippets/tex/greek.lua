@@ -40,6 +40,9 @@ return {
   s({ trig = ";h", snippetType = "autosnippet", wordTrig = false }, {
     t("\\eta"),
   }),
+  s({ trig = ";th", snippetType = "autosnippet", wordTrig = false }, {
+    t("\\theta"),
+  }),
   s({ trig = ";o", snippetType = "autosnippet", wordTrig = false }, {
     t("\\theta"),
   }),

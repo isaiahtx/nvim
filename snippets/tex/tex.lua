@@ -81,11 +81,31 @@ return {
 
   s(
     {
+      trig = "tff",
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt("\\tfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "dff",
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt("\\dfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
       trig = "ff",
       wordTrig = false,
       snippetType = "autosnippet",
     },
-    fmt("\\frac{<>}{<>}", { i(1), i(2) }, { delimiters = "<>" }),
+    fmt("\\frac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
     { condition = math }
   ),
 
@@ -309,7 +329,7 @@ return {
   ),
 
   s(
-    { trig = "ee" },
+    { trig = "ee", wordTrig = false, snippetType = "autosnippet" },
     fmta("e^{<>}", {
       d(1, get_visual),
     }),
@@ -331,25 +351,25 @@ return {
   ),
 
   s(
-    { trig = "dlb", wordTrig = false },
+    { trig = "dlb", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left[<>\\right]", { d(1, get_visual) }),
     { condition = math }
   ),
 
   s(
-    { trig = "dla", wordTrig = false },
+    { trig = "dla", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left|<>\\right|", { d(1, get_visual) }),
     { condition = math }
   ),
 
   s(
-    { trig = "dlc", wordTrig = false },
+    { trig = "dlc", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left\\{<>\\right\\}", { d(1, get_visual) }),
     { condition = math }
   ),
 
   s(
-    { trig = "dlp", wordTrig = false },
+    { trig = "dlp", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left(<>\\right)", { d(1, get_visual) }),
     { condition = math }
   ),
@@ -509,6 +529,12 @@ return {
       end),
       i(1),
     }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "qandq", snippetType = "autosnippet" },
+    { t("\\qquad\\text{and}\\qquad") },
     { condition = math }
   ),
 }
