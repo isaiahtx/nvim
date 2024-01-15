@@ -92,7 +92,15 @@ return {
   ),
 
   s(
-    { trig = "bf", dscr = "Expands 'bf' into '\\mathbf{}'" },
+    { trig = "ol", wordTrig = false },
+    fmta("\\overline{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "bf", wordTrig = false },
     fmta("\\mathbf{<>}", {
       d(1, get_visual),
     }),
@@ -100,7 +108,7 @@ return {
   ),
 
   s(
-    { trig = "bb", dscr = "Expands 'bb' into '\\mathbb{}'" },
+    { trig = "bb", wordTrig = false },
     fmta("\\mathbb{<>}", {
       d(1, get_visual),
     }),
@@ -121,7 +129,7 @@ return {
   ),
 
   s(
-    { trig = "eq", dscr = "Expands 'eq' into an equation environment" },
+    { trig = "eq" },
     fmta(
       [[
         \begin{equation*}
@@ -133,7 +141,7 @@ return {
   ),
 
   s(
-    { trig = "enum", dscr = "Expands 'eq' into an equation environment" },
+    { trig = "enum" },
     fmta(
       [[
         \begin{enumerate}[listparindent=\parindent,parsep=5pt,label={<>}]
@@ -145,7 +153,7 @@ return {
   ),
 
   s(
-    { trig = "env", descr = "Expands 'env' into new '\\begin{}\\end{}'" },
+    { trig = "env" },
     fmta(
       [[
         \begin{<>}
@@ -178,9 +186,7 @@ return {
   ),
 
   s(
-    {
-      trig = "prod",
-    },
+    { trig = "prod" },
     fmta("\\prod_{<>}^{<>}", {
       i(1),
       i(2),
@@ -195,9 +201,7 @@ return {
   ),
 
   s(
-    {
-      trig = "sum",
-    },
+    { trig = "sum" },
     fmta("\\sum_{<>}^{<>}", {
       i(1),
       i(2),
@@ -206,10 +210,7 @@ return {
   ),
 
   s(
-    {
-      trig = "hr",
-      dscr = "The hyperref package's href{}{} command (for url links)",
-    },
+    { trig = "hr" },
     fmta("\\href{<>}{<>}", {
       i(1, "url"),
       i(2, "display name"),
@@ -217,14 +218,14 @@ return {
   ),
 
   s(
-    { trig = "MM", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "MM", snippetType = "autosnippet" },
     fmta("\\[<>\\]", {
       d(1, get_visual),
     })
   ),
 
   s(
-    { trig = "mm", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "mm", snippetType = "autosnippet" },
     fmta("$<>$", {
       d(1, get_visual),
     })

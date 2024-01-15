@@ -35,7 +35,7 @@ return {
             fallback()
           end
         end, { "i", "s" }),
-        ["<C-J>"] = cmp.mapping(function(fallback)
+        ["<C-N>"] = cmp.mapping(function(fallback)
           if luasnip.expandable() then
             luasnip.expand()
           elseif luasnip.jumpable(1) then
@@ -44,7 +44,7 @@ return {
             fallback()
           end
         end),
-        ["<C-K>"] = cmp.mapping(function(fallback)
+        ["<C-S-N>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
