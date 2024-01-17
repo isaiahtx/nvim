@@ -126,8 +126,24 @@ return {
   ),
 
   s(
+    { trig = "wh", wordTrig = false },
+    fmta("\\widehat{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "wt", wordTrig = false },
     fmta("\\widetilde{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "ov", wordTrig = false },
+    fmta("\\overset{<>}", {
       d(1, get_visual),
     }),
     { condition = math }
@@ -245,7 +261,7 @@ return {
   ),
 
   s(
-    { trig = "inf", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "inf", wordTrig = false },
     fmta("\\infty", {}),
     { condition = math }
   ),
@@ -365,6 +381,30 @@ return {
   s(
     { trig = "dlc", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left\\{<>\\right\\}", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "dlcl", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\left\\lceil<>\right\\rceil", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "ceil", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\lceil<>\\rceil", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "floor", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\lfloor<>\\rfloor", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "dlflr", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\left\\lfloor<>\\right\\rfloor", { d(1, get_visual) }),
     { condition = math }
   ),
 
