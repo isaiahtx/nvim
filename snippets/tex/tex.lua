@@ -106,12 +106,27 @@ return {
       snippetType = "autosnippet",
     },
     fmt("\\frac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
-    { condition = math }
+    {
+      condition = function(line_to_cursor)
+        -- Check if the characters preceding 'ff' are not '\i'
+        return (vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1)
+          and (not string.match(line_to_cursor, "\\iff$"))
+      end,
+      show_condition = math,
+    }
   ),
 
   s(
     { trig = "cal", wordTrig = false },
     fmta("\\mathcal{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "mf", wordTrig = false },
+    fmta("\\mathfrak{<>}", {
       d(1, get_visual),
     }),
     { condition = math }
@@ -498,6 +513,21 @@ return {
       snippetType = "autosnippet",
     },
     fmt([[\widehat{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "mf(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\mathfrak{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),

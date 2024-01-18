@@ -4,9 +4,10 @@ return {
     "lervag/vimtex",
     config = function()
       vim.g["tex_flavor"] = "latex"
-      vim.g["vimtex_view_method"] = "skim"
       vim.g["vimtex_quickfix_mode"] = 0
       vim.g["vimtex_syntax_conceal_disable"] = 0
+      vim.g.vimtex_view_method = "zathura"
+      vim.g["vimtex_view_general_options"] = "-reuse-instance @pdf"
       vim.g["vimtex_syntax_conceal"] = {
         accents = 1,
         cites = 1,
