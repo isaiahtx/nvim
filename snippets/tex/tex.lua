@@ -92,7 +92,7 @@ return {
   s(
     {
       trig = "dff",
-      wordTrig = false,
+      wlrdTrig = false,
       snippetType = "autosnippet",
     },
     fmt("\\dfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
@@ -143,6 +143,14 @@ return {
   s(
     { trig = "wh", wordTrig = false },
     fmta("\\widehat{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "bs", wordTrig = false },
+    fmta("\\boldsymbol{<>}", {
       d(1, get_visual),
     }),
     { condition = math }
@@ -276,6 +284,12 @@ return {
   ),
 
   s(
+    { trig = "toinf", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\to\\infty", {}),
+    { condition = math }
+  ),
+
+  s(
     { trig = "inf", wordTrig = false },
     fmta("\\infty", {}),
     { condition = math }
@@ -322,7 +336,7 @@ return {
   s(
     { trig = "lim" },
     fmta("\\lim_{<>}", {
-      d(1, get_visual),
+      i(1, "n\\to\\infty"),
     }),
     { condition = math }
   ),
@@ -472,7 +486,14 @@ return {
         return snip.captures[1]
       end),
     }, { delimiters = "<>" }),
-    { condition = math }
+    {
+      condition = function(line_to_cursor)
+        -- Check if the character preceding 'ol' is not 'b', as in ``bold''
+        return (vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1)
+          and (not string.match(string.sub(line_to_cursor, 1, -2), "bol$"))
+      end,
+      show_condition = math,
+    }
   ),
 
   s(
@@ -483,6 +504,21 @@ return {
       snippetType = "autosnippet",
     },
     fmt([[\mathscr{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "bs(%a)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\boldsymbol{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
