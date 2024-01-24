@@ -173,6 +173,14 @@ return {
   ),
 
   s(
+    { trig = "ul", wordTrig = false },
+    fmta("\\underline{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "ol", wordTrig = false },
     fmta("\\overline{<>}", {
       d(1, get_visual),
