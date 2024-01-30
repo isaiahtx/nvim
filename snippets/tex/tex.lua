@@ -297,6 +297,8 @@ return {
     { condition = math }
   ),
 
+  s({ trig = "iff" }, fmta("if and only if", {}), { condition = not math }),
+
   s(
     { trig = "inf", wordTrig = false },
     fmta("\\infty", {}),
