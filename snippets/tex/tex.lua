@@ -306,6 +306,15 @@ return {
   ),
 
   s(
+    { trig = "int", wordTrig = false },
+    fmta("\\int_{<>}^{<>}", {
+      i(1),
+      i(2),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "sum", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\sum_{<>}^{<>}", {
       i(1),
