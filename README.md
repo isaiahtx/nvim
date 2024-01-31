@@ -21,8 +21,8 @@ contained in the starter template.
 
 ## Tips
 
-Best compared with my [zsh setup](https://github.com/isaiahtx/zdotdir). This
-setup has only been tested on Linux ([ArchWSL](https://github.com/yuk7/ArchWSL)
-on my Windows desktop and a native Arch install on my laptop, I use both about
+Best used with my [zsh setup](https://github.com/isaiahtx/zdotdir). This setup
+has only been tested on Linux ([ArchWSL](https://github.com/yuk7/ArchWSL) on my
+Windows desktop and a native Arch install on my laptop, I use both about
 equally). In particular, you will need to change the PDF viewer (I use
 [Zathura](https://github.com/pwmt/zathura)) if you're on Windows or macOS.
