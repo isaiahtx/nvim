@@ -16,5 +16,9 @@ Built off of the
 
 ## Features
 
-Lots of snippets (mostly aimed towards LaTeX), all the goodness contained in
-the starter template.
+Lots of snippets (mostly aimed towards writing in LaTeX), all the goodnessj
+contained in the starter template.
+
+## Tips
+
+Best compared with my [zsh setup](https://github.com/isaiahtx/zdotdir)
