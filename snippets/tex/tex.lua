@@ -205,6 +205,14 @@ return {
   ),
 
   s(
+    { trig = "sqrt", wordTrig = false },
+    fmta("\\sqrt{<>}", {
+      d(1, get_visual),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "bb", wordTrig = false },
     fmta("\\mathbb{<>}", {
       d(1, get_visual),
@@ -401,6 +409,13 @@ return {
   ),
 
   s(
+    { trig = "emph" },
+    fmta("\\emph{<>}", {
+      d(1, get_visual),
+    })
+  ),
+
+  s(
     { trig = "fit" },
     fmta("\\textit{<>}", {
       d(1, get_visual),
@@ -417,6 +432,18 @@ return {
   s(
     { trig = "dlb", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\left[<>\\right]", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "dllan", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\left\\langle<>\\right\\rangle", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "dlda", wordTrig = false, snippetType = "autosnippet" },
+    fmta("\\left\\|<>\\right\\|", { d(1, get_visual) }),
     { condition = math }
   ),
 
@@ -598,6 +625,21 @@ return {
       snippetType = "autosnippet",
     },
     fmt([[\mathbf{<>}]], {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }, { delimiters = "<>" }),
+    { condition = math }
+  ),
+
+  s(
+    {
+      trig = "sqrt(.)",
+      regTrig = true,
+      wordTrig = false,
+      snippetType = "autosnippet",
+    },
+    fmt([[\sqrt{<>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
