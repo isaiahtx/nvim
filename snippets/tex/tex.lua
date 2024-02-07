@@ -205,14 +205,6 @@ return {
   ),
 
   s(
-    { trig = "sqrt", wordTrig = false },
-    fmta("\\sqrt{<>}", {
-      d(1, get_visual),
-    }),
-    { condition = math }
-  ),
-
-  s(
     { trig = "bb", wordTrig = false },
     fmta("\\mathbb{<>}", {
       d(1, get_visual),
@@ -639,10 +631,11 @@ return {
       wordTrig = false,
       snippetType = "autosnippet",
     },
-    fmt([[\sqrt{<>}]], {
+    fmt([[\sqrt{<><>}]], {
       f(function(_, snip)
         return snip.captures[1]
       end),
+      i(1),
     }, { delimiters = "<>" }),
     { condition = math }
   ),
