@@ -10,7 +10,7 @@ Built off of the
 
         pacman -S neovim
 
-and you're good to go. If you're on a Debian based distro, the default version of neovim that comes with is outdated, in which case you'll need to follow the install instructions [here](https://github.com/neovim/neovim/blob/master/INSTALL.md) to get the latest version. I prefer to install it using flatpak.
+and you're good to go. If you're on a Debian based distro, the default version of neovim that comes with is outdated, in which case you can install the nightly version from [the unstable branch of the neovim ppa](https://launchpad.net/~neovim-ppa/+archive/ubuntu/unstable) (note: the stable version is still too outdated for LazyVim, at the time of writing this).
 
 3. Clone this repo to ~/.config/nvim
 
