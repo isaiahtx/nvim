@@ -92,7 +92,7 @@ return {
   s(
     {
       trig = "dff",
-      wlrdTrig = false,
+      wordTrig = false,
       snippetType = "autosnippet",
     },
     fmt("\\dfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
