@@ -6,13 +6,20 @@ Built off of the
 
 ## Installation
 
-1. Install [neovim](https://neovim.io/)
+1. Install [neovim](https://neovim.io/). If you're on Arch, that's as simple as running
 
-2. Clone this repo to ~/.config/nvim
+        pacman -S neovim
+
+and you're good to go. If you're on a Debian based distro, the default version
+of neovim that comes with `apt` is outdated, in which case follow the
+installation instructions
+[here](https://github.com/neovim/neovim/blob/master/INSTALL.md).
+
+1. Clone this repo to ~/.config/nvim
 
         git clone https://github.com/isaiahtx/nvim.git ~/.config/nvim
 
-3. Run neovim (`nvim`)
+1. Run neovim (`nvim`)
 
 ## Features
 
