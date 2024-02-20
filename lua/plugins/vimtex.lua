@@ -22,7 +22,7 @@ return {
         fancy = 1,
         greek = 1,
         math_bounds = 0,
-        math_delimiters = 0,
+        math_delimiters = 1,
         math_fracs = 1,
         math_super_sub = 1,
         math_symbols = 1,
