@@ -353,6 +353,22 @@ return {
   ),
 
   s(
+    { trig = "limsup" },
+    fmta("\\limsup_{<>}", {
+      i(1, "n\\to\\infty"),
+    }),
+    { condition = math }
+  ),
+
+  s(
+    { trig = "liminf" },
+    fmta("\\liminf_{<>}", {
+      i(1, "n\\to\\infty"),
+    }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "lim" },
     fmta("\\lim_{<>}", {
       i(1, "n\\to\\infty"),
