@@ -92,7 +92,7 @@ return {
   s(
     {
       trig = "dff",
-      wlrdTrig = false,
+      wordTrig = false,
       snippetType = "autosnippet",
     },
     fmt("\\dfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
@@ -577,7 +577,14 @@ return {
         return snip.captures[1]
       end),
     }, { delimiters = "<>" }),
-    { condition = math }
+    {
+      condition = function(line_to_cursor)
+        -- Check if the characters preceding 'ff' are not '\i'
+        return (vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1)
+          and (not string.match(line_to_cursor, "\\subse$"))
+      end,
+      show_condition = math,
+    }
   ),
 
   s(
