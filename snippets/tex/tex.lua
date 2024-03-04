@@ -409,6 +409,13 @@ return {
   ),
 
   s(
+    { trig = "aref", wordTrig = true },
+    fmta("\\autoref{<>}", {
+      d(1, get_visual),
+    })
+  ),
+
+  s(
     { trig = "ee", wordTrig = false, snippetType = "autosnippet" },
     fmta("e^{<>}", {
       d(1, get_visual),
