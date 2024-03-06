@@ -86,7 +86,14 @@ return {
       snippetType = "autosnippet",
     },
     fmt("\\tfrac{<>}{<>}", { d(1, get_visual), i(2) }, { delimiters = "<>" }),
-    { condition = math }
+    {
+      condition = function(line_to_cursor)
+        -- Check if the characters preceding 'ff' are not '\i'
+        return (vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1)
+          and (not string.match(line_to_cursor, "\\cdotff$"))
+      end,
+      show_condition = math,
+    }
   ),
 
   s(
