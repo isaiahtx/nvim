@@ -402,6 +402,12 @@ return {
   ),
 
   s(
+    { trig = "emp", wordTrig = true },
+    { t("\\emptyset") },
+    { condition = math }
+  ),
+
+  s(
     { trig = "spseq", wordTrig = false, snippetType = "autosnippet" },
     { t("\\supseteq") },
     { condition = math }
