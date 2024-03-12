@@ -518,6 +518,12 @@ return {
   ),
 
   s(
+    { trig = "^^", wordTrig = false, snippetType = "autosnippet" },
+    fmta("^{<>}", { d(1, get_visual) }),
+    { condition = math }
+  ),
+
+  s(
     { trig = "^", wordTrig = false },
     fmta("^{<>}", {
       d(1, get_visual),
