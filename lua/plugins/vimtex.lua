@@ -6,6 +6,7 @@ return {
       vim.g["tex_flavor"] = "latex"
       vim.g["vimtex_quickfix_mode"] = 0
       vim.g["vimtex_syntax_conceal_disable"] = 0
+      vim.g["vimtex_subfile_start_local"] = 1
 
       if vim.fn.system("uname") == "Darwin\n" then
         vim.g.vimtex_view_method = "skim"
@@ -21,7 +22,7 @@ return {
         cites = 1,
         fancy = 1,
         greek = 1,
-        math_bounds = 0,
+        math_bounds = 1,
         math_delimiters = 1,
         math_fracs = 1,
         math_super_sub = 1,
