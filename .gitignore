@@ -6,4 +6,5 @@ lazy-lock.json
 .repro
 foo.*
 *.log
+*.DS_Store
 data
