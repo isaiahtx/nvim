@@ -1,9 +1,9 @@
--- This code makes it where tab is used rather than Enter for autocomplete
 return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "saadparwaiz1/cmp_luasnip",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -25,8 +25,6 @@ return {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({ select = true })
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
           elseif luasnip.expandable() then
             luasnip.expand()
           elseif has_words_before() then
@@ -58,6 +56,14 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+      })
+
+      opts.sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" }, -- Add LuaSnip as a source
+        { name = "buffer" },
+        { name = "path" },
+        { name = "emoji" },
       })
     end,
   },
