@@ -18,7 +18,7 @@ macOS, then install neovim via [homebrew](https://brew.sh/) by running
 
         brew install nvim
 
-1. Clone this repo to ~/.config/nvim
+1. Clone this repo to ~/.config/nvim by running the following ciommand
 
         git clone https://github.com/isaiahtx/nvim.git ~/.config/nvim
 
@@ -30,13 +30,14 @@ macOS, then install neovim via [homebrew](https://brew.sh/) by running
 
 ## Features
 
-Lots of snippets (mostly aimed towards writing in LaTeX), all the goodnessj
+Lots of snippets (mostly aimed towards writing in LaTeX), all the goodness
 contained in the starter template.
 
 ## Tips
 
 Best used with my [zsh setup](https://github.com/isaiahtx/zdotdir). This setup
-has only been tested on Linux ([ArchWSL](https://github.com/yuk7/ArchWSL) on my
-Windows desktop and a native Arch install on my laptop, I use both about
-equally). In particular, you will need to change the PDF viewer (I use
-[Zathura](https://github.com/pwmt/zathura)) if you're on Windows or macOS.
+has been tested on macOS, Arch Linux WSL
+([ArchWSL](https://github.com/yuk7/ArchWSL) on my Windows desktop, and a native
+Arch install on my laptop. In particular, you will need to change the PDF
+viewer (I use [Zathura](https://github.com/pwmt/zathura)) if you're on native
+Windows (not WSL) or macOS.
