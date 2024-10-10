@@ -13,6 +13,9 @@ require("luasnip").config.set_config({ -- Setting LuaSnip config
   store_selection_keys = "<Tab>",
 })
 
+vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
+vim.cmd("highlight NonText guibg=NONE ctermbg=NONE")
+
 if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",

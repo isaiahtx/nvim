@@ -64,6 +64,7 @@ return {
         { name = "buffer" },
         { name = "path" },
         { name = "emoji" },
+        { name = "copilot" },
       })
     end,
   },
