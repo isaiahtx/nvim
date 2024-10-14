@@ -16,7 +16,22 @@ require("luasnip").config.set_config({ -- Setting LuaSnip config
 vim.cmd("highlight Normal guibg=NONE ctermbg=NONE")
 vim.cmd("highlight NonText guibg=NONE ctermbg=NONE")
 
-if vim.fn.has("wsl") == 1 then
+-- Check if we are in an SSH session
+if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
+    -- Use lemonade for clipboard
+    vim.g.clipboard = {
+        name = 'lemonade',
+        copy = {
+            ['+'] = 'lemonade copy',
+            ['*'] = 'lemonade copy',
+        },
+        paste = {
+            ['+'] = 'lemonade paste',
+            ['*'] = 'lemonade paste',
+        },
+        cache_enabled = 0,
+    }
+elseif vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
