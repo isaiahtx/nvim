@@ -45,3 +45,9 @@ elseif vim.fn.has("wsl") == 1 then
     cache_enabled = 0,
   }
 end
+
+local path = vim.fn.systemlist("luarocks path --lr-path")[1]
+package.path = package.path .. ";" .. path
+local cpath = vim.fn.systemlist("luarocks path --lr-cpath")[1]
+package.cpath = package.cpath .. ";" .. cpath
+vim.env.PATH = vim.env.PATH .. ":/Users/isaia/.cargo/bin"

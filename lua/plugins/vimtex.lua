@@ -38,16 +38,37 @@ return {
         executable = "latexmk",
         hooks = {},
         options = {
+          "-pdf",
+          "-interaction=nonstopmode",
+          "-shell-escape",
           "-verbose",
           "-file-line-error",
           "-synctex=1",
-          "-interaction=nonstopmode",
+          "-bibtex",
+          "-use-make", -- Use `biber` instead of `bibtex`
         },
       }
+      --    vim.g["vimtex_compiler_latexmk"] = {
+      --      aux_dir = "build",
+      --      out_dir = "build",
+      --      callback = 1,
+      --      continuous = 1,
+      --      executable = "latexmk",
+      --      hooks = {},
+      --      options = {
+      --        "-pdf",
+      --        "-interaction=nonstopmode",
+      --        "-shell-escape",
+      --        "-verbose",
+      --        "-file-line-error",
+      --        "-synctex=1",
+      --      },
+      --    }
       vim.o.conceallevel = 2
       vim.keymap.set("n", "<leader>v", function()
         vim.cmd(":VimtexView")
       end, { desc = "Vimtex [V]iew" })
+      vim.g.vimtex_subfile_start = 1
     end,
   },
 }
