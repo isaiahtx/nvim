@@ -10,3 +10,4 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.fo = "jntrocqp"
+vim.g.lazyvim_cmp = "nvim-cmp"
