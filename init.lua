@@ -18,19 +18,19 @@ vim.cmd("highlight NonText guibg=NONE ctermbg=NONE")
 
 -- Check if we are in an SSH session
 if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
-    -- Use lemonade for clipboard
-    vim.g.clipboard = {
-        name = 'lemonade',
-        copy = {
-            ['+'] = 'lemonade copy',
-            ['*'] = 'lemonade copy',
-        },
-        paste = {
-            ['+'] = 'lemonade paste',
-            ['*'] = 'lemonade paste',
-        },
-        cache_enabled = 0,
-    }
+  -- Use lemonade for clipboard
+  vim.g.clipboard = {
+    name = "lemonade",
+    copy = {
+      ["+"] = "lemonade copy",
+      ["*"] = "lemonade copy",
+    },
+    paste = {
+      ["+"] = "lemonade paste",
+      ["*"] = "lemonade paste",
+    },
+    cache_enabled = 0,
+  }
 elseif vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
@@ -51,3 +51,10 @@ package.path = package.path .. ";" .. path
 local cpath = vim.fn.systemlist("luarocks path --lr-cpath")[1]
 package.cpath = package.cpath .. ";" .. cpath
 vim.env.PATH = vim.env.PATH .. ":/Users/isaia/.cargo/bin"
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    vim.cmd("silent! wa") -- write all
+    vim.cmd("silent! qall!") -- quit all
+  end,
+})
