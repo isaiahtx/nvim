@@ -1,4 +1,4 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
+-- bootsrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
 -- LuaSnip stuff

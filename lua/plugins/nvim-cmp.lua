@@ -7,8 +7,13 @@ return {
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
+      local luasnip = require("luasnip")
+      local cmp = require("cmp")
+
+      ---------------------------------------------------------------------------
+      -- helpers ----------------------------------------------------------------
+      ---------------------------------------------------------------------------
+      local function has_words_before()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
           and vim.api
@@ -18,49 +23,64 @@ return {
             == nil
       end
 
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.confirm({ select = true })
-          elseif luasnip.expandable() then
+      local function jump(dir, fallback)
+        if luasnip.expand_or_jumpable() then
+          if dir == 1 and luasnip.expandable() then
             luasnip.expand()
-          elseif has_words_before() then
-            cmp.complete()
           else
-            fallback()
+            luasnip.jump(dir)
           end
-        end, { "i", "s" }),
-        ["<C-J>"] = cmp.mapping(function(fallback)
-          if luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.jumpable(1) then
-            luasnip.jump(1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<C-K>"] = cmp.mapping(function(fallback)
-          if luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      })
+        else
+          fallback()
+        end
+      end
 
+      ---------------------------------------------------------------------------
+      -- key‑mappings -----------------------------------------------------------
+      ---------------------------------------------------------------------------
+      opts.mapping =
+        cmp.mapping.preset.insert(vim.tbl_extend("force", opts.mapping or {}, {
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.confirm({ select = true })
+            elseif has_words_before() then
+              cmp.complete()
+            else
+              jump(1, fallback)
+            end
+          end, { "i", "s" }),
+
+          -- Jump / expand
+          ["<C-j>"] = cmp.mapping(function(fallback)
+            jump(1, fallback)
+          end, { "i", "s" }),
+          ["<C-k>"] = cmp.mapping(function(fallback)
+            jump(-1, fallback)
+          end, { "i", "s" }),
+
+          -- macOS Cmd aliases (terminal must forward <D-j>/<D-k>)
+          ["<D-j>"] = cmp.mapping(function(fallback)
+            jump(1, fallback)
+          end, { "i", "s" }),
+          ["<D-k>"] = cmp.mapping(function(fallback)
+            jump(-1, fallback)
+          end, { "i", "s" }),
+
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }))
+
+      ---------------------------------------------------------------------------
+      -- completion sources -----------------------------------------------------
+      ---------------------------------------------------------------------------
       opts.sources = cmp.config.sources({
         { name = "nvim_lsp" },
-        { name = "luasnip" }, -- Add LuaSnip as a source
+        { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
         { name = "emoji" },
