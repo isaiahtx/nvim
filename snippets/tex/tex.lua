@@ -24,7 +24,61 @@ local function math()
   return vim.api.nvim_eval("vimtex#syntax#in_mathzone()") == 1
 end
 
+local function env(name)
+  local is_inside = vim.fn["vimtex#env#is_inside"](name)
+  return (is_inside[1] > 0 and is_inside[2] > 0)
+end
+
+local mat = function(args, snip)
+  local rows = tonumber(snip.captures[2])
+  local cols = tonumber(snip.captures[3])
+  local nodes = {}
+  local ins_indx = 1
+  for j = 1, rows do
+    table.insert(nodes, r(ins_indx, tostring(j) .. "x1", i(1)))
+    ins_indx = ins_indx + 1
+    for k = 2, cols do
+      table.insert(nodes, t(" & "))
+      table.insert(nodes, r(ins_indx, tostring(j) .. "x" .. tostring(k), i(1)))
+      ins_indx = ins_indx + 1
+    end
+    table.insert(nodes, t({ "\\\\", "" }))
+  end
+  return sn(nil, nodes)
+end
+
 return {
+  s(
+    {
+      trig = "([bBpvV])mat(%d+)x(%d+)([ar])",
+      regTrig = true,
+    },
+    fmt(
+      [[
+        \begin{<>}<>
+        <>
+        \end{<>}
+      ]],
+      {
+        f(function(_, snip)
+          return snip.captures[1] .. "matrix"
+        end),
+        f(function(_, snip) -- augments
+          if snip.captures[4] == "a" then
+            out = string.rep("c", tonumber(snip.captures[3]) - 1)
+            return "[" .. out .. "|c]"
+          end
+          return ""
+        end),
+        d(1, mat),
+        f(function(_, snip)
+          return snip.captures[1] .. "matrix"
+        end),
+      },
+      { delimiters = "<>" }
+    )
+  ),
+
   s(
     {
       trig = "tff",
@@ -142,22 +196,10 @@ return {
   ),
 
   s(
-    { trig = "sf", wordTrig = false },
-    fmta("\\mathsf{<>}", {
+    { trig = "rm", wordTrig = false },
+    fmta("\\mathrm{<>}", {
       d(1, get_visual),
     }),
-    { condition = math }
-  ),
-
-  s(
-    { trig = "(?<=_)rm", regTrig = true, trigEngine = "ecma" },
-    fmta("{\\mathrm{<>}}", { d(1, get_visual) }),
-    { condition = math }
-  ),
-
-  s(
-    { trig = "rm", wordTrig = false },
-    fmta("\\mathrm{<>}", { d(1, get_visual) }),
     { condition = math }
   ),
 
