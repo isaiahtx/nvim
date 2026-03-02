@@ -23,18 +23,6 @@ return {
             == nil
       end
 
-      local function jump(dir, fallback)
-        if luasnip.expand_or_jumpable() then
-          if dir == 1 and luasnip.expandable() then
-            luasnip.expand()
-          else
-            luasnip.jump(dir)
-          end
-        else
-          fallback()
-        end
-      end
-
       ---------------------------------------------------------------------------
       -- key‑mappings -----------------------------------------------------------
       ---------------------------------------------------------------------------
@@ -43,34 +31,34 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.confirm({ select = true })
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
             elseif has_words_before() then
               cmp.complete()
             else
-              jump(1, fallback)
+              fallback()
             end
-          end, { "i", "s" }),
-
-          -- Jump / expand
-          ["<C-j>"] = cmp.mapping(function(fallback)
-            jump(1, fallback)
-          end, { "i", "s" }),
-          ["<C-k>"] = cmp.mapping(function(fallback)
-            jump(-1, fallback)
-          end, { "i", "s" }),
-
-          -- macOS Cmd aliases (terminal must forward <D-j>/<D-k>)
-          ["<D-j>"] = cmp.mapping(function(fallback)
-            jump(1, fallback)
-          end, { "i", "s" }),
-          ["<D-k>"] = cmp.mapping(function(fallback)
-            jump(-1, fallback)
           end, { "i", "s" }),
 
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
             else
               fallback()
+            end
+          end, { "i", "s" }),
+
+          -- macOS Cmd aliases (terminal must forward <D-j>/<D-k>)
+          ["<D-j>"] = cmp.mapping(function()
+            if luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+            end
+          end, { "i", "s" }),
+          ["<D-k>"] = cmp.mapping(function()
+            if luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
             end
           end, { "i", "s" }),
         }))
