@@ -31,15 +31,21 @@ if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
     cache_enabled = 0,
   }
 elseif vim.fn.has("wsl") == 1 then
+  -- win32yank handles UTF-8 correctly in both directions. clip.exe decodes
+  -- piped bytes via the legacy OEM codepage (CP437), turning em dashes/emoji
+  -- into mojibake (ΓÇö, Γ£à); the old PowerShell paste likewise downgraded
+  -- non-ASCII to "-"/"?". --crlf/--lf convert line endings natively, which
+  -- also replaces the previous Get-Clipboard \r-stripping workaround.
+  -- Install: ~/.local/bin/win32yank.exe (from github.com/equalsraf/win32yank).
   vim.g.clipboard = {
-    name = "WslClipboard",
+    name = "win32yank",
     copy = {
-      ["+"] = "clip.exe",
-      ["*"] = "clip.exe",
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
     },
     paste = {
-      ["+"] = 'powershell.exe -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-      ["*"] = 'powershell.exe -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
     },
     cache_enabled = 0,
   }
