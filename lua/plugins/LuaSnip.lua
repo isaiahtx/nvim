@@ -4,7 +4,22 @@ return {
     { "vhyrro/luarocks.nvim", priority = 1000, config = true },
   },
   rocks = { "jsregexp" },
-  opts = {},
+  -- Ensure snippets/config load at startup (keys alone would make this lazy).
+  lazy = false,
+  priority = 1000,
+  opts = {
+    enable_autosnippets = true,
+    store_selection_keys = "<Tab>",
+    region_check_events = "InsertEnter",
+    delete_check_events = "InsertLeave",
+  },
+  config = function(_, opts)
+    local ls = require("luasnip")
+    ls.config.set_config(opts)
+    require("luasnip.loaders.from_lua").load({
+      paths = { vim.fn.stdpath("config") .. "/snippets" },
+    })
+  end,
   keys = {
     {
       "<C-j>",
