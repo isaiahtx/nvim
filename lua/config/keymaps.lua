@@ -26,3 +26,7 @@ map("n", "<Left>", "")
 map("n", "<Right>", "")
 map("n", "<Up>", "1<Up>")
 map("n", "<Down>", "1<Down>")
+
+Snacks.toggle
+  .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" })
+  :map("<leader>ue")
