@@ -25,7 +25,9 @@ local function is_wsl()
   return false
 end
 
-if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
+local ssh = vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT
+
+if ssh and vim.fn.executable("lemonade") == 1 then
   -- Use lemonade for clipboard
   vim.g.clipboard = {
     name = "lemonade",
@@ -38,6 +40,27 @@ if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT then
       ["*"] = "lemonade paste",
     },
     cache_enabled = 0,
+  }
+elseif ssh then
+  -- No lemonade (e.g. a Coder workspace): copy through the terminal with OSC 52.
+  -- Many terminals ignore OSC 52 reads, so "+p pastes the last thing Neovim
+  -- copied; paste from the system clipboard with the terminal's paste key.
+  local osc52 = require("vim.ui.clipboard.osc52")
+  local last = { {}, "v" }
+  local function copy(reg)
+    local send = osc52.copy(reg)
+    return function(lines, regtype)
+      last = { lines, regtype }
+      send(lines, regtype)
+    end
+  end
+  local function paste()
+    return last
+  end
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = { ["+"] = copy("+"), ["*"] = copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
   }
 elseif is_wsl() and vim.fn.executable("win32yank.exe") == 1 then
   -- win32yank handles UTF-8 correctly in both directions.
