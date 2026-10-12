@@ -1,9 +1,7 @@
 return {
   "L3MON4D3/LuaSnip",
-  dependencies = {
-    { "vhyrro/luarocks.nvim", priority = 1000, config = true },
-  },
-  rocks = { "jsregexp" },
+  -- jsregexp is a user rock (`luarocks --local install jsregexp`; the Coder
+  -- dotfiles install it), found through the `luarocks path` lines in init.lua.
   -- Ensure snippets/config load at startup (keys alone would make this lazy).
   lazy = false,
   priority = 1000,

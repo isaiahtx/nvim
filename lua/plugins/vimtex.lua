@@ -12,9 +12,13 @@ return {
         vim.g.vimtex_view_method = "skim"
         vim.g.vimtex_compiler_progname = "nvr"
         vim.g["vimtex_view_general_options"] = "-r @line @pdf @src"
-      else
+      elseif vim.env.DISPLAY or vim.env.WAYLAND_DISPLAY then
         vim.g.vimtex_view_method = "zathura"
         vim.g["vimtex_view_general_options"] = "-reuse-instance @pdf"
+      else
+        -- No display (e.g. a Coder workspace): compile only; open build/*.pdf
+        -- in the editor's PDF preview or on your own machine.
+        vim.g.vimtex_view_enabled = 0
       end
 
       vim.g["vimtex_syntax_conceal"] = {
